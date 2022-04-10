@@ -1,0 +1,1631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbQuantusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ecARTICULO">
+          <Key>
+            <PropertyRef Name="idArticulo" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idArticulo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idCategoria" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idMarca" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="numCatalogo" Type="varchar" MaxLength="20" />
+          <Property Name="estatus" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="nomArticulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="precio" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="idUnidad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="visitas" Type="int" />
+          <Property Name="fechaUltimaVisita" Type="datetime" />
+          <Property Name="ctdCompartido" Type="int" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="idUsuario" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="indice" Type="int" Nullable="false" />
+          <Property Name="estrella" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="rebaja" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="relevancia" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="promo" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecCARRITO">
+          <Key>
+            <PropertyRef Name="idCarrito" />
+          </Key>
+          <Property Name="idCarrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idPedido" Type="int" Nullable="false" />
+          <Property Name="idArticulo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="precio" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="cantidad" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="importe" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecCATEGORIA">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idCategoria" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbQuantus.dbo.ecCOMENTARIO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ecCOMENTARIO">
+          <Key>
+            <PropertyRef Name="idComentario" />
+            <PropertyRef Name="idArticulo" />
+            <PropertyRef Name="idEmpresa" />
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="fecha" />
+            <PropertyRef Name="comentario" />
+            <PropertyRef Name="publicar" />
+          </Key>
+          <Property Name="idComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArticulo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="comentario" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="publicar" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecEMPRESA">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="SKU" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="razonsocial" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="rfc" Type="varchar" MaxLength="20" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="delegacion" Type="varchar" MaxLength="60" />
+          <Property Name="ciudad" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+          <Property Name="pais" Type="varchar" MaxLength="50" />
+          <Property Name="nomContacto" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="celular" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nomBanco" Type="varchar" MaxLength="20" />
+          <Property Name="numTarjeta" Type="varchar" MaxLength="20" />
+          <Property Name="clabe" Type="varchar" MaxLength="20" />
+          <Property Name="urlTinda" Type="varchar" MaxLength="1000" />
+          <Property Name="urlSitioWeb" Type="varchar" MaxLength="1000" />
+          <Property Name="urlFaceBook" Type="varchar" MaxLength="1000" />
+          <Property Name="urlYouTube" Type="varchar" MaxLength="1000" />
+          <Property Name="urlInstagram" Type="varchar" MaxLength="1000" />
+          <Property Name="urlTwitter" Type="varchar" MaxLength="1000" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="estatus" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="visitas" Type="int" Nullable="false" />
+          <Property Name="fechaUtimaVisita" Type="datetime" />
+          <Property Name="descNegocio" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="urlImagen" Type="varchar(max)" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbQuantus.dbo.ecFAVORITO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ecFAVORITO">
+          <Key>
+            <PropertyRef Name="idFavorito" />
+            <PropertyRef Name="idArticulo" />
+            <PropertyRef Name="idEmpresa" />
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idFavorito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArticulo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecIMAGEN">
+          <Key>
+            <PropertyRef Name="idImagen" />
+          </Key>
+          <Property Name="idImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idArticulo" Type="varchar" MaxLength="20" />
+          <Property Name="idCategoria" Type="varchar" MaxLength="20" />
+          <Property Name="idMarca" Type="varchar" MaxLength="20" />
+          <Property Name="nomImagen" Type="varchar" MaxLength="1000" />
+          <Property Name="urlImagen" Type="varchar(max)" />
+          <Property Name="principal" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecMARCA">
+          <Key>
+            <PropertyRef Name="idMarca" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idMarca" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecMENU">
+          <Key>
+            <PropertyRef Name="idMenu" />
+          </Key>
+          <Property Name="idMenu" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nomMenu" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="icono" Type="varchar" MaxLength="100" />
+          <Property Name="estatus" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecPEDIDO">
+          <Key>
+            <PropertyRef Name="idPedido" />
+          </Key>
+          <Property Name="idPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="500" />
+          <Property Name="notas" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ecPERFIL">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idPerfil" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="nomPerfil" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estatus" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecPERFILDET">
+          <Key>
+            <PropertyRef Name="idPerfilDet" />
+          </Key>
+          <Property Name="idPerfilDet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPerfil" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idMenu" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecSUCURSAL">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idSucursal" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="direccion" Type="char" MaxLength="1" />
+          <Property Name="ciudad" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="varchar" MaxLength="100" />
+          <Property Name="estatus" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="ecUNIDAD">
+          <Key>
+            <PropertyRef Name="idUnidad" />
+          </Key>
+          <Property Name="idUnidad" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecUSUARIO">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idUsuario" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idSucursal" Type="varchar" MaxLength="20" />
+          <Property Name="idPerfil" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="500" />
+          <Property Name="mesCumple" Type="int" />
+          <Property Name="diaCumple" Type="int" />
+          <Property Name="genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="estatus" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ecARTICULO_ecCATEGORIA">
+          <End Role="ecCATEGORIA" Type="Self.ecCATEGORIA" Multiplicity="1" />
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecCATEGORIA">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecARTICULO_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecARTICULO_ecMARCA">
+          <End Role="ecMARCA" Type="Self.ecMARCA" Multiplicity="1" />
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecMARCA">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idMarca" />
+            </Principal>
+            <Dependent Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecARTICULO_ecUNIDAD">
+          <End Role="ecUNIDAD" Type="Self.ecUNIDAD" Multiplicity="1" />
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecUNIDAD">
+              <PropertyRef Name="idUnidad" />
+            </Principal>
+            <Dependent Role="ecARTICULO">
+              <PropertyRef Name="idUnidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCARRITO_ecARTICULO">
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="1" />
+          <End Role="ecCARRITO" Type="Self.ecCARRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="ecCARRITO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCARRITO_ecPEDIDO">
+          <End Role="ecPEDIDO" Type="Self.ecPEDIDO" Multiplicity="1" />
+          <End Role="ecCARRITO" Type="Self.ecCARRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecPEDIDO">
+              <PropertyRef Name="idPedido" />
+            </Principal>
+            <Dependent Role="ecCARRITO">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCATEGORIA_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecCATEGORIA" Type="Self.ecCATEGORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecCATEGORIA">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCOMENTARIO_ecARTICULO">
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="1" />
+          <End Role="ecCOMENTARIO" Type="Self.ecCOMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="ecCOMENTARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCOMENTARIO_ecUSUARIO">
+          <End Role="ecUSUARIO" Type="Self.ecUSUARIO" Multiplicity="1" />
+          <End Role="ecCOMENTARIO" Type="Self.ecCOMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecUSUARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="ecCOMENTARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecFAVORITO_ecARTICULO">
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="1" />
+          <End Role="ecFAVORITO" Type="Self.ecFAVORITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="ecFAVORITO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecFAVORITO_ecUSUARIO">
+          <End Role="ecUSUARIO" Type="Self.ecUSUARIO" Multiplicity="1" />
+          <End Role="ecFAVORITO" Type="Self.ecFAVORITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecUSUARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="ecFAVORITO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecIMAGEN_ecARTICULO">
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="0..1" />
+          <End Role="ecIMAGEN" Type="Self.ecIMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="ecIMAGEN">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecIMAGEN_ecCATEGORIA">
+          <End Role="ecCATEGORIA" Type="Self.ecCATEGORIA" Multiplicity="0..1" />
+          <End Role="ecIMAGEN" Type="Self.ecIMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecCATEGORIA">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="ecIMAGEN">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecIMAGEN_ecMARCA">
+          <End Role="ecMARCA" Type="Self.ecMARCA" Multiplicity="0..1" />
+          <End Role="ecIMAGEN" Type="Self.ecIMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecMARCA">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idMarca" />
+            </Principal>
+            <Dependent Role="ecIMAGEN">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecMARCA_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecMARCA" Type="Self.ecMARCA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecMARCA">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecPEDIDO_ecUSUARIO">
+          <End Role="ecUSUARIO" Type="Self.ecUSUARIO" Multiplicity="1" />
+          <End Role="ecPEDIDO" Type="Self.ecPEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecUSUARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="ecPEDIDO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecPERFIL_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecPERFIL" Type="Self.ecPERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecPERFIL">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecPERFILDET_ecMENU">
+          <End Role="ecMENU" Type="Self.ecMENU" Multiplicity="1" />
+          <End Role="ecPERFILDET" Type="Self.ecPERFILDET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecMENU">
+              <PropertyRef Name="idMenu" />
+            </Principal>
+            <Dependent Role="ecPERFILDET">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecPERFILDET_ecPERFIL">
+          <End Role="ecPERFIL" Type="Self.ecPERFIL" Multiplicity="1" />
+          <End Role="ecPERFILDET" Type="Self.ecPERFILDET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecPERFIL">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="ecPERFILDET">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecSUCURSAL_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecSUCURSAL" Type="Self.ecSUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecSUCURSAL">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecUSUARIO_ecPERFIL">
+          <End Role="ecPERFIL" Type="Self.ecPERFIL" Multiplicity="1" />
+          <End Role="ecUSUARIO" Type="Self.ecUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecPERFIL">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="ecUSUARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spArticulosListInicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEmpresa" Type="int" Mode="In" />
+          <Parameter Name="orden" Type="char" Mode="In" />
+          <Parameter Name="categoria" Type="varchar" Mode="In" />
+          <Parameter Name="marca" Type="varchar" Mode="In" />
+          <Parameter Name="buscar" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spEmpresaList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEmpresa" Type="int" Mode="In" />
+          <Parameter Name="orden" Type="char" Mode="In" />
+          <Parameter Name="buscar" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="dbQuantusModelStoreContainer">
+          <EntitySet Name="ecARTICULO" EntityType="Self.ecARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecCARRITO" EntityType="Self.ecCARRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecCATEGORIA" EntityType="Self.ecCATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecEMPRESA" EntityType="Self.ecEMPRESA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecIMAGEN" EntityType="Self.ecIMAGEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecMARCA" EntityType="Self.ecMARCA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecMENU" EntityType="Self.ecMENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecPEDIDO" EntityType="Self.ecPEDIDO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecPERFIL" EntityType="Self.ecPERFIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecPERFILDET" EntityType="Self.ecPERFILDET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecSUCURSAL" EntityType="Self.ecSUCURSAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecUNIDAD" EntityType="Self.ecUNIDAD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecUSUARIO" EntityType="Self.ecUSUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ecCOMENTARIO" EntityType="Self.ecCOMENTARIO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ecCOMENTARIO].[idComentario] AS [idComentario], 
+    [ecCOMENTARIO].[idArticulo] AS [idArticulo], 
+    [ecCOMENTARIO].[idEmpresa] AS [idEmpresa], 
+    [ecCOMENTARIO].[idUsuario] AS [idUsuario], 
+    [ecCOMENTARIO].[fecha] AS [fecha], 
+    [ecCOMENTARIO].[comentario] AS [comentario], 
+    [ecCOMENTARIO].[publicar] AS [publicar]
+    FROM [dbo].[ecCOMENTARIO] AS [ecCOMENTARIO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ecFAVORITO" EntityType="Self.ecFAVORITO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ecFAVORITO].[idFavorito] AS [idFavorito], 
+    [ecFAVORITO].[idArticulo] AS [idArticulo], 
+    [ecFAVORITO].[idEmpresa] AS [idEmpresa], 
+    [ecFAVORITO].[idUsuario] AS [idUsuario]
+    FROM [dbo].[ecFAVORITO] AS [ecFAVORITO]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ecARTICULO_ecCATEGORIA" Association="Self.FK_ecARTICULO_ecCATEGORIA">
+            <End Role="ecCATEGORIA" EntitySet="ecCATEGORIA" />
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecARTICULO_ecEMPRESA" Association="Self.FK_ecARTICULO_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecARTICULO_ecMARCA" Association="Self.FK_ecARTICULO_ecMARCA">
+            <End Role="ecMARCA" EntitySet="ecMARCA" />
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecARTICULO_ecUNIDAD" Association="Self.FK_ecARTICULO_ecUNIDAD">
+            <End Role="ecUNIDAD" EntitySet="ecUNIDAD" />
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCARRITO_ecARTICULO" Association="Self.FK_ecCARRITO_ecARTICULO">
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+            <End Role="ecCARRITO" EntitySet="ecCARRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCARRITO_ecPEDIDO" Association="Self.FK_ecCARRITO_ecPEDIDO">
+            <End Role="ecPEDIDO" EntitySet="ecPEDIDO" />
+            <End Role="ecCARRITO" EntitySet="ecCARRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCATEGORIA_ecEMPRESA" Association="Self.FK_ecCATEGORIA_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecCATEGORIA" EntitySet="ecCATEGORIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCOMENTARIO_ecARTICULO" Association="Self.FK_ecCOMENTARIO_ecARTICULO">
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+            <End Role="ecCOMENTARIO" EntitySet="ecCOMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCOMENTARIO_ecUSUARIO" Association="Self.FK_ecCOMENTARIO_ecUSUARIO">
+            <End Role="ecUSUARIO" EntitySet="ecUSUARIO" />
+            <End Role="ecCOMENTARIO" EntitySet="ecCOMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecFAVORITO_ecARTICULO" Association="Self.FK_ecFAVORITO_ecARTICULO">
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+            <End Role="ecFAVORITO" EntitySet="ecFAVORITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecFAVORITO_ecUSUARIO" Association="Self.FK_ecFAVORITO_ecUSUARIO">
+            <End Role="ecUSUARIO" EntitySet="ecUSUARIO" />
+            <End Role="ecFAVORITO" EntitySet="ecFAVORITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecIMAGEN_ecARTICULO" Association="Self.FK_ecIMAGEN_ecARTICULO">
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+            <End Role="ecIMAGEN" EntitySet="ecIMAGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecIMAGEN_ecCATEGORIA" Association="Self.FK_ecIMAGEN_ecCATEGORIA">
+            <End Role="ecCATEGORIA" EntitySet="ecCATEGORIA" />
+            <End Role="ecIMAGEN" EntitySet="ecIMAGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecIMAGEN_ecMARCA" Association="Self.FK_ecIMAGEN_ecMARCA">
+            <End Role="ecMARCA" EntitySet="ecMARCA" />
+            <End Role="ecIMAGEN" EntitySet="ecIMAGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecMARCA_ecEMPRESA" Association="Self.FK_ecMARCA_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecMARCA" EntitySet="ecMARCA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecPEDIDO_ecUSUARIO" Association="Self.FK_ecPEDIDO_ecUSUARIO">
+            <End Role="ecUSUARIO" EntitySet="ecUSUARIO" />
+            <End Role="ecPEDIDO" EntitySet="ecPEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecPERFIL_ecEMPRESA" Association="Self.FK_ecPERFIL_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecPERFIL" EntitySet="ecPERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecPERFILDET_ecMENU" Association="Self.FK_ecPERFILDET_ecMENU">
+            <End Role="ecMENU" EntitySet="ecMENU" />
+            <End Role="ecPERFILDET" EntitySet="ecPERFILDET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecPERFILDET_ecPERFIL" Association="Self.FK_ecPERFILDET_ecPERFIL">
+            <End Role="ecPERFIL" EntitySet="ecPERFIL" />
+            <End Role="ecPERFILDET" EntitySet="ecPERFILDET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecSUCURSAL_ecEMPRESA" Association="Self.FK_ecSUCURSAL_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecSUCURSAL" EntitySet="ecSUCURSAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecUSUARIO_ecPERFIL" Association="Self.FK_ecUSUARIO_ecPERFIL">
+            <End Role="ecPERFIL" EntitySet="ecPERFIL" />
+            <End Role="ecUSUARIO" EntitySet="ecUSUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbQuantusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ecARTICULO">
+          <Key>
+            <PropertyRef Name="idArticulo" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idArticulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idCategoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMarca" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numCatalogo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nomArticulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="idUnidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="visitas" Type="Int32" />
+          <Property Name="fechaUltimaVisita" Type="DateTime" Precision="3" />
+          <Property Name="ctdCompartido" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idUsuario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="indice" Type="Int32" Nullable="false" />
+          <Property Name="estrella" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rebaja" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="relevancia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="promo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecCATEGORIA" Relationship="Self.FK_ecARTICULO_ecCATEGORIA" FromRole="ecARTICULO" ToRole="ecCATEGORIA" />
+          <NavigationProperty Name="ecEMPRESA" Relationship="Self.FK_ecARTICULO_ecEMPRESA" FromRole="ecARTICULO" ToRole="ecEMPRESA" />
+          <NavigationProperty Name="ecMARCA" Relationship="Self.FK_ecARTICULO_ecMARCA" FromRole="ecARTICULO" ToRole="ecMARCA" />
+          <NavigationProperty Name="ecUNIDAD" Relationship="Self.FK_ecARTICULO_ecUNIDAD" FromRole="ecARTICULO" ToRole="ecUNIDAD" />
+          <NavigationProperty Name="ecCARRITO" Relationship="Self.FK_ecCARRITO_ecARTICULO" FromRole="ecARTICULO" ToRole="ecCARRITO" />
+          <NavigationProperty Name="ecCOMENTARIO" Relationship="Self.FK_ecCOMENTARIO_ecARTICULO" FromRole="ecARTICULO" ToRole="ecCOMENTARIO" />
+          <NavigationProperty Name="ecFAVORITO" Relationship="Self.FK_ecFAVORITO_ecARTICULO" FromRole="ecARTICULO" ToRole="ecFAVORITO" />
+          <NavigationProperty Name="ecIMAGEN" Relationship="Self.FK_ecIMAGEN_ecARTICULO" FromRole="ecARTICULO" ToRole="ecIMAGEN" />
+        </EntityType>
+        <EntityType Name="ecCARRITO">
+          <Key>
+            <PropertyRef Name="idCarrito" />
+          </Key>
+          <Property Name="idCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idPedido" Type="Int32" Nullable="false" />
+          <Property Name="idArticulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="importe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="ecARTICULO" Relationship="Self.FK_ecCARRITO_ecARTICULO" FromRole="ecCARRITO" ToRole="ecARTICULO" />
+          <NavigationProperty Name="ecPEDIDO" Relationship="Self.FK_ecCARRITO_ecPEDIDO" FromRole="ecCARRITO" ToRole="ecPEDIDO" />
+        </EntityType>
+        <EntityType Name="ecCATEGORIA">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idCategoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ecARTICULO" Relationship="Self.FK_ecARTICULO_ecCATEGORIA" FromRole="ecCATEGORIA" ToRole="ecARTICULO" />
+          <NavigationProperty Name="ecEMPRESA" Relationship="Self.FK_ecCATEGORIA_ecEMPRESA" FromRole="ecCATEGORIA" ToRole="ecEMPRESA" />
+          <NavigationProperty Name="ecIMAGEN" Relationship="Self.FK_ecIMAGEN_ecCATEGORIA" FromRole="ecCATEGORIA" ToRole="ecIMAGEN" />
+        </EntityType>
+        <EntityType Name="ecEMPRESA">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="SKU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="razonsocial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rfc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="delegacion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nomContacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomBanco" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="numTarjeta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="clabe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="urlTinda" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="urlSitioWeb" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="urlFaceBook" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="urlYouTube" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="urlInstagram" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="urlTwitter" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="visitas" Type="Int32" Nullable="false" />
+          <Property Name="fechaUtimaVisita" Type="DateTime" Precision="3" />
+          <Property Name="descNegocio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="urlImagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ecARTICULO" Relationship="Self.FK_ecARTICULO_ecEMPRESA" FromRole="ecEMPRESA" ToRole="ecARTICULO" />
+          <NavigationProperty Name="ecCATEGORIA" Relationship="Self.FK_ecCATEGORIA_ecEMPRESA" FromRole="ecEMPRESA" ToRole="ecCATEGORIA" />
+          <NavigationProperty Name="ecMARCA" Relationship="Self.FK_ecMARCA_ecEMPRESA" FromRole="ecEMPRESA" ToRole="ecMARCA" />
+          <NavigationProperty Name="ecPERFIL" Relationship="Self.FK_ecPERFIL_ecEMPRESA" FromRole="ecEMPRESA" ToRole="ecPERFIL" />
+          <NavigationProperty Name="ecSUCURSAL" Relationship="Self.FK_ecSUCURSAL_ecEMPRESA" FromRole="ecEMPRESA" ToRole="ecSUCURSAL" />
+        </EntityType>
+        <EntityType Name="ecIMAGEN">
+          <Key>
+            <PropertyRef Name="idImagen" />
+          </Key>
+          <Property Name="idImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idArticulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idCategoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idMarca" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nomImagen" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="urlImagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="principal" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecARTICULO" Relationship="Self.FK_ecIMAGEN_ecARTICULO" FromRole="ecIMAGEN" ToRole="ecARTICULO" />
+          <NavigationProperty Name="ecCATEGORIA" Relationship="Self.FK_ecIMAGEN_ecCATEGORIA" FromRole="ecIMAGEN" ToRole="ecCATEGORIA" />
+          <NavigationProperty Name="ecMARCA" Relationship="Self.FK_ecIMAGEN_ecMARCA" FromRole="ecIMAGEN" ToRole="ecMARCA" />
+        </EntityType>
+        <EntityType Name="ecMARCA">
+          <Key>
+            <PropertyRef Name="idMarca" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idMarca" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ecARTICULO" Relationship="Self.FK_ecARTICULO_ecMARCA" FromRole="ecMARCA" ToRole="ecARTICULO" />
+          <NavigationProperty Name="ecEMPRESA" Relationship="Self.FK_ecMARCA_ecEMPRESA" FromRole="ecMARCA" ToRole="ecEMPRESA" />
+          <NavigationProperty Name="ecIMAGEN" Relationship="Self.FK_ecIMAGEN_ecMARCA" FromRole="ecMARCA" ToRole="ecIMAGEN" />
+        </EntityType>
+        <EntityType Name="ecMENU">
+          <Key>
+            <PropertyRef Name="idMenu" />
+          </Key>
+          <Property Name="idMenu" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomMenu" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="icono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecPERFILDET" Relationship="Self.FK_ecPERFILDET_ecMENU" FromRole="ecMENU" ToRole="ecPERFILDET" />
+        </EntityType>
+        <EntityType Name="ecPEDIDO">
+          <Key>
+            <PropertyRef Name="idPedido" />
+          </Key>
+          <Property Name="idPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="notas" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ecCARRITO" Relationship="Self.FK_ecCARRITO_ecPEDIDO" FromRole="ecPEDIDO" ToRole="ecCARRITO" />
+          <NavigationProperty Name="ecUSUARIO" Relationship="Self.FK_ecPEDIDO_ecUSUARIO" FromRole="ecPEDIDO" ToRole="ecUSUARIO" />
+        </EntityType>
+        <EntityType Name="ecPERFIL">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idPerfil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="nomPerfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecEMPRESA" Relationship="Self.FK_ecPERFIL_ecEMPRESA" FromRole="ecPERFIL" ToRole="ecEMPRESA" />
+          <NavigationProperty Name="ecPERFILDET" Relationship="Self.FK_ecPERFILDET_ecPERFIL" FromRole="ecPERFIL" ToRole="ecPERFILDET" />
+          <NavigationProperty Name="ecUSUARIO" Relationship="Self.FK_ecUSUARIO_ecPERFIL" FromRole="ecPERFIL" ToRole="ecUSUARIO" />
+        </EntityType>
+        <EntityType Name="ecPERFILDET">
+          <Key>
+            <PropertyRef Name="idPerfilDet" />
+          </Key>
+          <Property Name="idPerfilDet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPerfil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idMenu" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecMENU" Relationship="Self.FK_ecPERFILDET_ecMENU" FromRole="ecPERFILDET" ToRole="ecMENU" />
+          <NavigationProperty Name="ecPERFIL" Relationship="Self.FK_ecPERFILDET_ecPERFIL" FromRole="ecPERFILDET" ToRole="ecPERFIL" />
+        </EntityType>
+        <EntityType Name="ecSUCURSAL">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idSucursal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ecEMPRESA" Relationship="Self.FK_ecSUCURSAL_ecEMPRESA" FromRole="ecSUCURSAL" ToRole="ecEMPRESA" />
+        </EntityType>
+        <EntityType Name="ecUNIDAD">
+          <Key>
+            <PropertyRef Name="idUnidad" />
+          </Key>
+          <Property Name="idUnidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecARTICULO" Relationship="Self.FK_ecARTICULO_ecUNIDAD" FromRole="ecUNIDAD" ToRole="ecARTICULO" />
+        </EntityType>
+        <EntityType Name="ecUSUARIO">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idUsuario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idSucursal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idPerfil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mesCumple" Type="Int32" />
+          <Property Name="diaCumple" Type="Int32" />
+          <Property Name="genero" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecPEDIDO" Relationship="Self.FK_ecPEDIDO_ecUSUARIO" FromRole="ecUSUARIO" ToRole="ecPEDIDO" />
+          <NavigationProperty Name="ecPERFIL" Relationship="Self.FK_ecUSUARIO_ecPERFIL" FromRole="ecUSUARIO" ToRole="ecPERFIL" />
+          <NavigationProperty Name="ecCOMENTARIO" Relationship="Self.FK_ecCOMENTARIO_ecUSUARIO" FromRole="ecUSUARIO" ToRole="ecCOMENTARIO" />
+          <NavigationProperty Name="ecFAVORITO" Relationship="Self.FK_ecFAVORITO_ecUSUARIO" FromRole="ecUSUARIO" ToRole="ecFAVORITO" />
+        </EntityType>
+        <EntityType Name="ecCOMENTARIO">
+          <Key>
+            <PropertyRef Name="idComentario" />
+            <PropertyRef Name="idArticulo" />
+            <PropertyRef Name="idEmpresa" />
+            <PropertyRef Name="idUsuario" />
+            <PropertyRef Name="fecha" />
+            <PropertyRef Name="comentario" />
+            <PropertyRef Name="publicar" />
+          </Key>
+          <Property Name="idComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArticulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="comentario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="publicar" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecARTICULO" Relationship="Self.FK_ecCOMENTARIO_ecARTICULO" FromRole="ecCOMENTARIO" ToRole="ecARTICULO" />
+          <NavigationProperty Name="ecUSUARIO" Relationship="Self.FK_ecCOMENTARIO_ecUSUARIO" FromRole="ecCOMENTARIO" ToRole="ecUSUARIO" />
+        </EntityType>
+        <EntityType Name="ecFAVORITO">
+          <Key>
+            <PropertyRef Name="idFavorito" />
+            <PropertyRef Name="idArticulo" />
+            <PropertyRef Name="idEmpresa" />
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idFavorito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArticulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ecARTICULO" Relationship="Self.FK_ecFAVORITO_ecARTICULO" FromRole="ecFAVORITO" ToRole="ecARTICULO" />
+          <NavigationProperty Name="ecUSUARIO" Relationship="Self.FK_ecFAVORITO_ecUSUARIO" FromRole="ecFAVORITO" ToRole="ecUSUARIO" />
+        </EntityType>
+        <Association Name="FK_ecARTICULO_ecCATEGORIA">
+          <End Role="ecCATEGORIA" Type="Self.ecCATEGORIA" Multiplicity="1" />
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecCATEGORIA">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecARTICULO_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecARTICULO_ecMARCA">
+          <End Role="ecMARCA" Type="Self.ecMARCA" Multiplicity="1" />
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecMARCA">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idMarca" />
+            </Principal>
+            <Dependent Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecARTICULO_ecUNIDAD">
+          <End Role="ecUNIDAD" Type="Self.ecUNIDAD" Multiplicity="1" />
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecUNIDAD">
+              <PropertyRef Name="idUnidad" />
+            </Principal>
+            <Dependent Role="ecARTICULO">
+              <PropertyRef Name="idUnidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCARRITO_ecARTICULO">
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="1" />
+          <End Role="ecCARRITO" Type="Self.ecCARRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="ecCARRITO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCOMENTARIO_ecARTICULO">
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="1" />
+          <End Role="ecCOMENTARIO" Type="Self.ecCOMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="ecCOMENTARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecFAVORITO_ecARTICULO">
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="1" />
+          <End Role="ecFAVORITO" Type="Self.ecFAVORITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="ecFAVORITO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecIMAGEN_ecARTICULO">
+          <End Role="ecARTICULO" Type="Self.ecARTICULO" Multiplicity="0..1" />
+          <End Role="ecIMAGEN" Type="Self.ecIMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecARTICULO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="ecIMAGEN">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCARRITO_ecPEDIDO">
+          <End Role="ecPEDIDO" Type="Self.ecPEDIDO" Multiplicity="1" />
+          <End Role="ecCARRITO" Type="Self.ecCARRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecPEDIDO">
+              <PropertyRef Name="idPedido" />
+            </Principal>
+            <Dependent Role="ecCARRITO">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCATEGORIA_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecCATEGORIA" Type="Self.ecCATEGORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecCATEGORIA">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecIMAGEN_ecCATEGORIA">
+          <End Role="ecCATEGORIA" Type="Self.ecCATEGORIA" Multiplicity="0..1" />
+          <End Role="ecIMAGEN" Type="Self.ecIMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecCATEGORIA">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="ecIMAGEN">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecMARCA_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecMARCA" Type="Self.ecMARCA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecMARCA">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecPERFIL_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecPERFIL" Type="Self.ecPERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecPERFIL">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecSUCURSAL_ecEMPRESA">
+          <End Role="ecEMPRESA" Type="Self.ecEMPRESA" Multiplicity="1" />
+          <End Role="ecSUCURSAL" Type="Self.ecSUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecEMPRESA">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ecSUCURSAL">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecIMAGEN_ecMARCA">
+          <End Role="ecMARCA" Type="Self.ecMARCA" Multiplicity="0..1" />
+          <End Role="ecIMAGEN" Type="Self.ecIMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecMARCA">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idMarca" />
+            </Principal>
+            <Dependent Role="ecIMAGEN">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecPERFILDET_ecMENU">
+          <End Role="ecMENU" Type="Self.ecMENU" Multiplicity="1" />
+          <End Role="ecPERFILDET" Type="Self.ecPERFILDET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecMENU">
+              <PropertyRef Name="idMenu" />
+            </Principal>
+            <Dependent Role="ecPERFILDET">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecPEDIDO_ecUSUARIO">
+          <End Role="ecUSUARIO" Type="Self.ecUSUARIO" Multiplicity="1" />
+          <End Role="ecPEDIDO" Type="Self.ecPEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecUSUARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="ecPEDIDO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecPERFILDET_ecPERFIL">
+          <End Role="ecPERFIL" Type="Self.ecPERFIL" Multiplicity="1" />
+          <End Role="ecPERFILDET" Type="Self.ecPERFILDET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecPERFIL">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="ecPERFILDET">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecUSUARIO_ecPERFIL">
+          <End Role="ecPERFIL" Type="Self.ecPERFIL" Multiplicity="1" />
+          <End Role="ecUSUARIO" Type="Self.ecUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecPERFIL">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="ecUSUARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecCOMENTARIO_ecUSUARIO">
+          <End Role="ecUSUARIO" Type="Self.ecUSUARIO" Multiplicity="1" />
+          <End Role="ecCOMENTARIO" Type="Self.ecCOMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecUSUARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="ecCOMENTARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ecFAVORITO_ecUSUARIO">
+          <End Role="ecUSUARIO" Type="Self.ecUSUARIO" Multiplicity="1" />
+          <End Role="ecFAVORITO" Type="Self.ecFAVORITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ecUSUARIO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="ecFAVORITO">
+              <PropertyRef Name="idEmpresa" />
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbCatalogoDigital" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ecARTICULO" EntityType="Self.ecARTICULO" />
+          <EntitySet Name="ecCARRITO" EntityType="Self.ecCARRITO" />
+          <EntitySet Name="ecCATEGORIA" EntityType="Self.ecCATEGORIA" />
+          <EntitySet Name="ecEMPRESA" EntityType="Self.ecEMPRESA" />
+          <EntitySet Name="ecIMAGEN" EntityType="Self.ecIMAGEN" />
+          <EntitySet Name="ecMARCA" EntityType="Self.ecMARCA" />
+          <EntitySet Name="ecMENU" EntityType="Self.ecMENU" />
+          <EntitySet Name="ecPEDIDO" EntityType="Self.ecPEDIDO" />
+          <EntitySet Name="ecPERFIL" EntityType="Self.ecPERFIL" />
+          <EntitySet Name="ecPERFILDET" EntityType="Self.ecPERFILDET" />
+          <EntitySet Name="ecSUCURSAL" EntityType="Self.ecSUCURSAL" />
+          <EntitySet Name="ecUNIDAD" EntityType="Self.ecUNIDAD" />
+          <EntitySet Name="ecUSUARIO" EntityType="Self.ecUSUARIO" />
+          <EntitySet Name="ecCOMENTARIO" EntityType="Self.ecCOMENTARIO" />
+          <EntitySet Name="ecFAVORITO" EntityType="Self.ecFAVORITO" />
+          <AssociationSet Name="FK_ecARTICULO_ecCATEGORIA" Association="Self.FK_ecARTICULO_ecCATEGORIA">
+            <End Role="ecCATEGORIA" EntitySet="ecCATEGORIA" />
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecARTICULO_ecEMPRESA" Association="Self.FK_ecARTICULO_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecARTICULO_ecMARCA" Association="Self.FK_ecARTICULO_ecMARCA">
+            <End Role="ecMARCA" EntitySet="ecMARCA" />
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecARTICULO_ecUNIDAD" Association="Self.FK_ecARTICULO_ecUNIDAD">
+            <End Role="ecUNIDAD" EntitySet="ecUNIDAD" />
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCARRITO_ecARTICULO" Association="Self.FK_ecCARRITO_ecARTICULO">
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+            <End Role="ecCARRITO" EntitySet="ecCARRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCOMENTARIO_ecARTICULO" Association="Self.FK_ecCOMENTARIO_ecARTICULO">
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+            <End Role="ecCOMENTARIO" EntitySet="ecCOMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecFAVORITO_ecARTICULO" Association="Self.FK_ecFAVORITO_ecARTICULO">
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+            <End Role="ecFAVORITO" EntitySet="ecFAVORITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecIMAGEN_ecARTICULO" Association="Self.FK_ecIMAGEN_ecARTICULO">
+            <End Role="ecARTICULO" EntitySet="ecARTICULO" />
+            <End Role="ecIMAGEN" EntitySet="ecIMAGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCARRITO_ecPEDIDO" Association="Self.FK_ecCARRITO_ecPEDIDO">
+            <End Role="ecPEDIDO" EntitySet="ecPEDIDO" />
+            <End Role="ecCARRITO" EntitySet="ecCARRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCATEGORIA_ecEMPRESA" Association="Self.FK_ecCATEGORIA_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecCATEGORIA" EntitySet="ecCATEGORIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecIMAGEN_ecCATEGORIA" Association="Self.FK_ecIMAGEN_ecCATEGORIA">
+            <End Role="ecCATEGORIA" EntitySet="ecCATEGORIA" />
+            <End Role="ecIMAGEN" EntitySet="ecIMAGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecMARCA_ecEMPRESA" Association="Self.FK_ecMARCA_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecMARCA" EntitySet="ecMARCA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecPERFIL_ecEMPRESA" Association="Self.FK_ecPERFIL_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecPERFIL" EntitySet="ecPERFIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecSUCURSAL_ecEMPRESA" Association="Self.FK_ecSUCURSAL_ecEMPRESA">
+            <End Role="ecEMPRESA" EntitySet="ecEMPRESA" />
+            <End Role="ecSUCURSAL" EntitySet="ecSUCURSAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecIMAGEN_ecMARCA" Association="Self.FK_ecIMAGEN_ecMARCA">
+            <End Role="ecMARCA" EntitySet="ecMARCA" />
+            <End Role="ecIMAGEN" EntitySet="ecIMAGEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecPERFILDET_ecMENU" Association="Self.FK_ecPERFILDET_ecMENU">
+            <End Role="ecMENU" EntitySet="ecMENU" />
+            <End Role="ecPERFILDET" EntitySet="ecPERFILDET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecPEDIDO_ecUSUARIO" Association="Self.FK_ecPEDIDO_ecUSUARIO">
+            <End Role="ecUSUARIO" EntitySet="ecUSUARIO" />
+            <End Role="ecPEDIDO" EntitySet="ecPEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecPERFILDET_ecPERFIL" Association="Self.FK_ecPERFILDET_ecPERFIL">
+            <End Role="ecPERFIL" EntitySet="ecPERFIL" />
+            <End Role="ecPERFILDET" EntitySet="ecPERFILDET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecUSUARIO_ecPERFIL" Association="Self.FK_ecUSUARIO_ecPERFIL">
+            <End Role="ecPERFIL" EntitySet="ecPERFIL" />
+            <End Role="ecUSUARIO" EntitySet="ecUSUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecCOMENTARIO_ecUSUARIO" Association="Self.FK_ecCOMENTARIO_ecUSUARIO">
+            <End Role="ecUSUARIO" EntitySet="ecUSUARIO" />
+            <End Role="ecCOMENTARIO" EntitySet="ecCOMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ecFAVORITO_ecUSUARIO" Association="Self.FK_ecFAVORITO_ecUSUARIO">
+            <End Role="ecUSUARIO" EntitySet="ecUSUARIO" />
+            <End Role="ecFAVORITO" EntitySet="ecFAVORITO" />
+          </AssociationSet>
+          <FunctionImport Name="spArticulosListInicio" ReturnType="Collection(dbQuantusModel.spArticulosListInicio_Result)">
+            <Parameter Name="idEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="orden" Mode="In" Type="String" />
+            <Parameter Name="categoria" Mode="In" Type="String" />
+            <Parameter Name="marca" Mode="In" Type="String" />
+            <Parameter Name="buscar" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spEmpresaList" ReturnType="Collection(dbQuantusModel.spEmpresaList_Result)">
+            <Parameter Name="idEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="orden" Mode="In" Type="String" />
+            <Parameter Name="buscar" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spArticulosListInicio_Result">
+          <Property Type="String" Name="idArticulo" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="idEmpresa" Nullable="false" />
+          <Property Type="String" Name="idCategoria" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="idMarca" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="numCatalogo" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="estatus" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="nomArticulo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="1000" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="idUnidad" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="visitas" Nullable="true" />
+          <Property Type="DateTime" Name="fechaUltimaVisita" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ctdCompartido" Nullable="true" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="idUsuario" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="indice" Nullable="false" />
+          <Property Type="String" Name="estrella" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="rebaja" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="relevancia" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="promo" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="imagen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spEmpresaList_Result">
+          <Property Type="Int32" Name="idEmpresa" Nullable="false" />
+          <Property Type="String" Name="SKU" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="razonsocial" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="rfc" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="delegacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="ciudad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="pais" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nomContacto" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="celular" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="nomBanco" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="numTarjeta" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="clabe" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="urlTinda" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="urlSitioWeb" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="urlFaceBook" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="urlYouTube" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="urlInstagram" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="urlTwitter" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="estatus" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="visitas" Nullable="false" />
+          <Property Type="DateTime" Name="fechaUtimaVisita" Nullable="true" Precision="23" />
+          <Property Type="String" Name="descNegocio" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="urlImagen" Nullable="true" />
+          <Property Type="Int32" Name="ctdArticulos" Nullable="true" />
+          <Property Type="Int32" Name="ctdUsuarios" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbQuantusModelStoreContainer" CdmEntityContainer="dbCatalogoDigital">
+          <EntitySetMapping Name="ecARTICULO">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecARTICULO">
+              <MappingFragment StoreEntitySet="ecARTICULO">
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="numCatalogo" ColumnName="numCatalogo" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="nomArticulo" ColumnName="nomArticulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+                <ScalarProperty Name="visitas" ColumnName="visitas" />
+                <ScalarProperty Name="fechaUltimaVisita" ColumnName="fechaUltimaVisita" />
+                <ScalarProperty Name="ctdCompartido" ColumnName="ctdCompartido" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="indice" ColumnName="indice" />
+                <ScalarProperty Name="estrella" ColumnName="estrella" />
+                <ScalarProperty Name="rebaja" ColumnName="rebaja" />
+                <ScalarProperty Name="relevancia" ColumnName="relevancia" />
+                <ScalarProperty Name="promo" ColumnName="promo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecCARRITO">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecCARRITO">
+              <MappingFragment StoreEntitySet="ecCARRITO">
+                <ScalarProperty Name="idCarrito" ColumnName="idCarrito" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecCATEGORIA">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecCATEGORIA">
+              <MappingFragment StoreEntitySet="ecCATEGORIA">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecEMPRESA">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecEMPRESA">
+              <MappingFragment StoreEntitySet="ecEMPRESA">
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="razonsocial" ColumnName="razonsocial" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="delegacion" ColumnName="delegacion" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="nomContacto" ColumnName="nomContacto" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nomBanco" ColumnName="nomBanco" />
+                <ScalarProperty Name="numTarjeta" ColumnName="numTarjeta" />
+                <ScalarProperty Name="clabe" ColumnName="clabe" />
+                <ScalarProperty Name="urlTinda" ColumnName="urlTinda" />
+                <ScalarProperty Name="urlSitioWeb" ColumnName="urlSitioWeb" />
+                <ScalarProperty Name="urlFaceBook" ColumnName="urlFaceBook" />
+                <ScalarProperty Name="urlYouTube" ColumnName="urlYouTube" />
+                <ScalarProperty Name="urlInstagram" ColumnName="urlInstagram" />
+                <ScalarProperty Name="urlTwitter" ColumnName="urlTwitter" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="visitas" ColumnName="visitas" />
+                <ScalarProperty Name="fechaUtimaVisita" ColumnName="fechaUtimaVisita" />
+                <ScalarProperty Name="descNegocio" ColumnName="descNegocio" />
+                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecIMAGEN">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecIMAGEN">
+              <MappingFragment StoreEntitySet="ecIMAGEN">
+                <ScalarProperty Name="idImagen" ColumnName="idImagen" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="nomImagen" ColumnName="nomImagen" />
+                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
+                <ScalarProperty Name="principal" ColumnName="principal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecMARCA">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecMARCA">
+              <MappingFragment StoreEntitySet="ecMARCA">
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecMENU">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecMENU">
+              <MappingFragment StoreEntitySet="ecMENU">
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+                <ScalarProperty Name="nomMenu" ColumnName="nomMenu" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="icono" ColumnName="icono" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecPEDIDO">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecPEDIDO">
+              <MappingFragment StoreEntitySet="ecPEDIDO">
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecPERFIL">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecPERFIL">
+              <MappingFragment StoreEntitySet="ecPERFIL">
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="nomPerfil" ColumnName="nomPerfil" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecPERFILDET">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecPERFILDET">
+              <MappingFragment StoreEntitySet="ecPERFILDET">
+                <ScalarProperty Name="idPerfilDet" ColumnName="idPerfilDet" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecSUCURSAL">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecSUCURSAL">
+              <MappingFragment StoreEntitySet="ecSUCURSAL">
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecUNIDAD">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecUNIDAD">
+              <MappingFragment StoreEntitySet="ecUNIDAD">
+                <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecUSUARIO">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecUSUARIO">
+              <MappingFragment StoreEntitySet="ecUSUARIO">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="mesCumple" ColumnName="mesCumple" />
+                <ScalarProperty Name="diaCumple" ColumnName="diaCumple" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecCOMENTARIO">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecCOMENTARIO">
+              <MappingFragment StoreEntitySet="ecCOMENTARIO">
+                <ScalarProperty Name="idComentario" ColumnName="idComentario" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="publicar" ColumnName="publicar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecFAVORITO">
+            <EntityTypeMapping TypeName="dbQuantusModel.ecFAVORITO">
+              <MappingFragment StoreEntitySet="ecFAVORITO">
+                <ScalarProperty Name="idFavorito" ColumnName="idFavorito" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spArticulosListInicio" FunctionName="dbQuantusModel.Store.spArticulosListInicio">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbQuantusModel.spArticulosListInicio_Result">
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="numCatalogo" ColumnName="numCatalogo" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="nomArticulo" ColumnName="nomArticulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+                <ScalarProperty Name="visitas" ColumnName="visitas" />
+                <ScalarProperty Name="fechaUltimaVisita" ColumnName="fechaUltimaVisita" />
+                <ScalarProperty Name="ctdCompartido" ColumnName="ctdCompartido" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="indice" ColumnName="indice" />
+                <ScalarProperty Name="estrella" ColumnName="estrella" />
+                <ScalarProperty Name="rebaja" ColumnName="rebaja" />
+                <ScalarProperty Name="relevancia" ColumnName="relevancia" />
+                <ScalarProperty Name="promo" ColumnName="promo" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEmpresaList" FunctionName="dbQuantusModel.Store.spEmpresaList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbQuantusModel.spEmpresaList_Result">
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="razonsocial" ColumnName="razonsocial" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="delegacion" ColumnName="delegacion" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="nomContacto" ColumnName="nomContacto" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nomBanco" ColumnName="nomBanco" />
+                <ScalarProperty Name="numTarjeta" ColumnName="numTarjeta" />
+                <ScalarProperty Name="clabe" ColumnName="clabe" />
+                <ScalarProperty Name="urlTinda" ColumnName="urlTinda" />
+                <ScalarProperty Name="urlSitioWeb" ColumnName="urlSitioWeb" />
+                <ScalarProperty Name="urlFaceBook" ColumnName="urlFaceBook" />
+                <ScalarProperty Name="urlYouTube" ColumnName="urlYouTube" />
+                <ScalarProperty Name="urlInstagram" ColumnName="urlInstagram" />
+                <ScalarProperty Name="urlTwitter" ColumnName="urlTwitter" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="visitas" ColumnName="visitas" />
+                <ScalarProperty Name="fechaUtimaVisita" ColumnName="fechaUtimaVisita" />
+                <ScalarProperty Name="descNegocio" ColumnName="descNegocio" />
+                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
+                <ScalarProperty Name="ctdArticulos" ColumnName="ctdArticulos" />
+                <ScalarProperty Name="ctdUsuarios" ColumnName="ctdUsuarios" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
